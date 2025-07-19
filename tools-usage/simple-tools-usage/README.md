@@ -12,6 +12,8 @@ The value of this simple example application:
 - shows how to maintain the chat history and pass it with each message, so the LLM is aware
 
 To run this example you should:
+- create a .env file in the project root (outside the GitHub repo!!!) and add the following API keys:
+- OPENAI_API_KEY=your-openai-api-key
 - install Python 3 (might already be installed, execute python3 --version in a Terminal shell)
 - install the uv Python package manager https://docs.astral.sh/uv/getting-started/installation
 - clone this repository from GitHub:
