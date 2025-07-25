@@ -1,5 +1,5 @@
 [project]
-name = "teen-novel-generator"
+name = "novel-generator"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
