@@ -72,22 +72,9 @@ def get_user_inputs():
             break  # Valid and confirmed
         except ValueError:
             print("Please enter a valid integer.")
+    return genre, title, num_pages, num_words, num_chapters, plot, max_tokens
 
-        # 7. Perform AI review
-    while True:
-        review_input = input("\nPerform AI review and revision? Consumes 2 - 4x tokens (Yes or No): ").strip().lower()
-        if review_input in {"yes", "y"}:
-            perform_review = True
-            break
-        elif review_input in {"no", "n"}:
-            perform_review = False
-            break
-        else:
-            print("Please enter Yes, No, Y, or N.")
-
-    return genre, title, num_pages, num_words, num_chapters, plot, max_tokens, perform_review
-
-async def generate_novel(genre, title, num_pages, num_words, num_chapters, plot, max_tokens, perform_review):
+async def generate_novel(genre, title, num_pages, num_words, num_chapters, plot, max_tokens):
     # Print collected inputs for confirmation (optional)
     print("\nCOLLECTED NOVEL CONFIGURATION:\n")
     print(f"Genre: {genre}")
@@ -96,7 +83,6 @@ async def generate_novel(genre, title, num_pages, num_words, num_chapters, plot,
     print(f"Pages: {num_pages}")
     print(f"Chapters: {num_chapters}")
     print(f"Max Tokens: {max_tokens}")
-    print(f"AI Review/Revision: {'Yes' if perform_review else 'No'}")
 
     print("\nAwesome, now we'll generate your novel!")
 
@@ -104,9 +90,6 @@ async def generate_novel(genre, title, num_pages, num_words, num_chapters, plot,
     or default parameters, to generate a creative and engaging novel. \
     Do not perform web searches. Focus entirely on imaginative, coherent, and emotionally engaging content. \
     Your output should read like a real novel, vivid, descriptive, and character-driven. \
-    After generating the novel, you will hand it off to another agent that will review the \
-    generated novel and offer suggestions. You can decide whether to make changes based on each \
-    suggestion, in producing the final output. \
     \
     If the user input plot is \"Auto-Generated Plot\" then you should generate an interesting plot for the novel \
     based on the genre, otherwise use the plot provided by the user. \
@@ -158,10 +141,10 @@ async def main():
     loader_task = asyncio.create_task(show_loading_indicator(done_event))
 
     # Run the agent
-    genre, title, num_pages, num_words, num_chapters, plot, max_tokens, perform_review = get_user_inputs()
+    genre, title, num_pages, num_words, num_chapters, plot, max_tokens = get_user_inputs()
 
     result = await generate_novel(
-        genre, title, num_pages, num_words, num_chapters, plot, max_tokens, perform_review
+        genre, title, num_pages, num_words, num_chapters, plot, max_tokens
     )
 
     # Signal that loading is done

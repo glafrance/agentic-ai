@@ -32,8 +32,8 @@ def get_user_inputs():
     # 6. Max AI tokens
     while True:
         max_tokens_input = input(
-            "\nMaximum AI tokens to use, after which novel \n"
-            "generation will fail (about 200,000 tokens for 90): "
+            "\nMaximum AI tokens to use. Note that if the max tokens is not high enough, \
+            the novel might not be completely generated. (about 50,000 - 200,000 tokens for 90): "
         ).strip()
         try:
             max_tokens = int(max_tokens_input)
@@ -51,25 +51,10 @@ def get_user_inputs():
             break  # Valid and confirmed
         except ValueError:
             print("Please enter a valid integer.")
-
-        # 7. Perform AI review
-    while True:
-        review_input = input("\nPerform AI review and revision? Consumes 2 - 4x tokens (Yes or No): ").strip().lower()
-        if review_input in {"yes", "y"}:
-            perform_review = True
-            break
-        elif review_input in {"no", "n"}:
-            perform_review = False
-            break
-        else:
-            print("Please enter Yes, No, Y, or N.")
-
     print(f"\nGenre: {genre}")
     print(f"Plot: {plot}")
     print(f"Title: {title}")
     print(f"Pages: {num_pages}")
     print(f"Chapters: {num_chapters}")
     print(f"Max Tokens: {max_tokens}")
-    print(f"AI Review/Revision: {'Yes' if perform_review else 'No'}")
-
-    return genre, title, num_pages, num_words, num_chapters, plot, max_tokens, perform_review
+    return genre, title, num_pages, num_words, num_chapters, plot, max_tokens

@@ -5,15 +5,16 @@ async def generate_novel(genre, title, num_pages, num_words, num_chapters, plot,
   or default parameters, to generate a creative and engaging novel. \
   Do not perform web searches. Focus entirely on imaginative, coherent, and emotionally engaging content. \
   Your output should read like a real novel, vivid, descriptive, and character-driven. \
-  After generating the novel, you will hand it off to another agent that will review the \
-  generated novel and offer suggestions. You can decide whether to make changes based on each \
-  suggestion, in producing the final output. \
   \
   If the user input plot is \"Auto-Generated Plot\" then you should generate an interesting plot for the novel \
   based on the genre, otherwise use the plot provided by the user. \
   \
-  If the user input title is \"Auto-Generated Title\" then you should generate an interesting title \
-  based on the genre and plot, otherwise use the title provided by the user. \
+  If the user provides the title 'Auto-Generated Title', then you must generate a creative, natural-sounding \
+  title for the book, based on the genre and plot. \
+  ⚠️ Do not include words like 'title', 'novel', or 'auto-generated' in the title. \
+  ✅ The result must be a clean, human-like book title such as 'The Whispering Shadows' or 'Echoes of Tomorrow', \
+  not a filename, not prefixed with 'novel_', and not using underscores. If the user provided their own title \
+  (i.e., not 'Auto-Generated Title'), use it exactly as given.  \
   \
   The genre of the novel is {genre}. The plot of the novel is {plot}. The title of the novel is {title}. \
   You should generate a novel that is {num_pages} pages long. Ensure you do not abruptly end the novel \
